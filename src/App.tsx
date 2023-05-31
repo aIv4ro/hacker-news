@@ -1,13 +1,13 @@
 import './App.css'
 import { Header } from './components/header/header'
-import { News } from './components/news/news'
+import { HackerNews } from './components/news/hacker-news'
 
 function App () {
   return (
     <>
       <Header />
       <main>
-        <News />
+        <HackerNews />
       </main>
     </>
   )
