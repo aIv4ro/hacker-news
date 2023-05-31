@@ -6,7 +6,7 @@ export function HackerNews () {
 
   return (
     <section className={section}>
-      {hackerNews.map((hackerNew: any) => (<p key={hackerNew.id}>{hackerNew.title}</p>))}
+      {hackerNews.map((hackerNew) => (<p key={hackerNew.id}>{hackerNew.title}</p>))}
     </section>
   )
 }
