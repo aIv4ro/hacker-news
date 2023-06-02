@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { buildUrl } from '../constants/contants'
 import { HackerNews } from '../types/hacker-new'
+import { fetchItem } from '../services/fetch-item'
 
 function loadIds (ids: number[]): Promise<HackerNews> {
   return Promise.all(
-    ids.map(id => fetch(buildUrl(`item/${id}`))
-      .then(res => res.json()))
+    ids.map(fetchItem)
   )
 }
 
