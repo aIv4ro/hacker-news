@@ -1,19 +1,19 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { buildUrl } from '../constants/contants'
-import { HackerNews } from '../types/hacker-new'
+import { Stories } from '../types/story'
 import { fetchItem } from '../services/fetch-item'
 
-function loadIds (ids: number[]): Promise<HackerNews> {
+function loadIds (ids: number[]): Promise<Stories> {
   return Promise.all(
     ids.map(fetchItem)
   )
 }
 
-export function useHackerNews () {
+export function useTopStories () {
   const limit = useMemo(() => 10, [])
   const [page, setPage] = useState(1)
-  const [hackerNewsIds, setHackerNewsIds] = useState<number[]>([])
-  const [hackerNews, setHackerNews] = useState<HackerNews>([])
+  const [hackerNewsIds, setStoriesIds] = useState<number[]>([])
+  const [stories, setStories] = useState<Stories>([])
 
   useEffect(() => {
     // load ids
@@ -21,10 +21,10 @@ export function useHackerNews () {
       .then(res => res.json())
       .then((res: number[]) => {
         const newState = [...res]
-        setHackerNewsIds(newState)
+        setStoriesIds(newState)
       })
       .catch(err => console.log(err))
-  }, [setHackerNewsIds])
+  }, [setStoriesIds])
 
   useEffect(() => {
     // initial news load (first 10)
@@ -32,7 +32,7 @@ export function useHackerNews () {
     loadIds(idsToLoad)
       .then(res => {
         setPage(1)
-        setHackerNews([...res])
+        setStories([...res])
       })
       .catch(err => console.log(err))
   }, [hackerNewsIds, limit])
@@ -44,10 +44,10 @@ export function useHackerNews () {
     loadIds(idsToLoad)
       .then(res => {
         setPage(prev => prev + 1)
-        setHackerNews(prev => [...prev, ...res])
+        setStories(prev => [...prev, ...res])
       })
       .catch(err => console.log(err))
   }, [limit, page, hackerNewsIds])
 
-  return { hackerNews, loadMore }
+  return { stories, loadMore }
 }

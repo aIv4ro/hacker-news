@@ -1,15 +1,20 @@
 import { useStory } from '../../hooks/use-story'
+import { Story } from '../story/story'
 
 export function StoryPage () {
   const { story, isLoading } = useStory()
 
   if (isLoading) {
-    return <section>Loading...</section>
+    return <p>Loading...</p>
+  }
+
+  if (story == null) {
+    return <p>Story not found</p>
   }
 
   return (
     <section>
-      {story?.title}
+      <Story hackerNew={story} />
     </section>
   )
 }

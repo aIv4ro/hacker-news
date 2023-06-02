@@ -1,9 +1,9 @@
 import { Link } from 'wouter'
-import { HackerNew as IHackerNew } from '../../types/hacker-new'
-import { footer, h4, header, storyLink } from './hacker-new.css'
+import { Story as IStory } from '../../types/story'
+import { footer, h4, header, storyLink } from './story.css'
 
 interface Props {
-  hackerNew: IHackerNew
+  hackerNew: IStory
 }
 
 const rtf = new Intl.RelativeTimeFormat(undefined, {
@@ -33,7 +33,7 @@ const getTimeDiff = (time: number) => {
   return rtf.format(value * -1, unit)
 }
 
-export function HackerNew ({ hackerNew }: Props) {
+export function Story ({ hackerNew }: Props) {
   const timeDiff = getTimeDiff(hackerNew.time * 1000)
   let url: URL | undefined
   try {
