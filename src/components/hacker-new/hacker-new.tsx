@@ -34,7 +34,7 @@ const getTimeDiff = (time: number) => {
 
 export function HackerNew ({ hackerNew }: Props) {
   const timeDiff = getTimeDiff(hackerNew.time * 1000)
-  let url
+  let url: URL | undefined
   try {
     url = new URL(hackerNew.url)
   } catch (err) {}
