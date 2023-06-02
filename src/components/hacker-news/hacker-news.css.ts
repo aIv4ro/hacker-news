@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css'
 export const section = style({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'start',
+  alignItems: 'center',
   padding: '0 10px'
 })
 

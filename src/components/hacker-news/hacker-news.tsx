@@ -6,7 +6,7 @@ export function HackerNews () {
   const { hackerNews, loadMore } = useHackerNews()
   return (
     <section className={section}>
-      <ul>
+      <ol>
         {hackerNews.map(hackerNew => {
           return (
             <li key={hackerNew.id}>
@@ -14,7 +14,7 @@ export function HackerNews () {
             </li>
           )
         })}
-      </ul>
+      </ol>
       <button className={button} onClick={loadMore}>Load more</button>
     </section>
   )
