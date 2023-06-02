@@ -1,7 +1,11 @@
+import { useStory } from '../../hooks/use-story'
+
 export function StoryPage () {
+  const { story } = useStory()
+
   return (
     <section>
-      Story Page!!!
+      {story?.title}
     </section>
   )
 }
