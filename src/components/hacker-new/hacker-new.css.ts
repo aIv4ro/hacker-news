@@ -14,3 +14,8 @@ export const h4 = style({
 export const footer = style({
   fontSize: '11px'
 })
+
+export const storyLink = style({
+  textDecoration: 'none',
+  color: 'currentcolor'
+})

@@ -1,5 +1,6 @@
+import { Link } from 'wouter'
 import { HackerNew as IHackerNew } from '../../types/hacker-new'
-import { footer, h4, header } from './hacker-new.css'
+import { footer, h4, header, storyLink } from './hacker-new.css'
 
 interface Props {
   hackerNew: IHackerNew
@@ -42,7 +43,11 @@ export function HackerNew ({ hackerNew }: Props) {
   return (
     <article>
       <header className={header}>
-        <h4 className={h4}>{hackerNew.title}</h4>
+        <h4 className={h4}>
+          <Link href={`/story/${hackerNew.id}`} className={storyLink}>
+            {hackerNew.title}
+          </Link>
+        </h4>
         {(url != null) && <a href={hackerNew.url}>({url?.hostname})</a>}
       </header>
       <footer className={footer}>
