@@ -1,13 +1,17 @@
 import './App.css'
 import { Header } from './components/header/header'
-import { HackerNews } from './components/hacker-news/hacker-news'
+import { Route, Switch } from 'wouter'
+import { HomePage } from './components/home-page/home-page'
 
 function App () {
   return (
     <>
       <Header />
       <main>
-        <HackerNews />
+        <Switch>
+          <Route path='/story/:id'>Ruta con detalle</Route>
+          <Route component={HomePage} />
+        </Switch>
       </main>
     </>
   )

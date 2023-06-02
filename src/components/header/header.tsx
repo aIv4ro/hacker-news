@@ -1,3 +1,4 @@
+import { Link } from 'wouter'
 import { header, title, logo, link } from './header.css'
 
 export function Header () {
@@ -7,7 +8,7 @@ export function Header () {
         Y
       </div>
       <h1 className={title}>
-        <a href='/' className={link}>Hacker news</a>
+        <Link href='/' className={link}>Hacker news</Link>
       </h1>
     </header>
   )
