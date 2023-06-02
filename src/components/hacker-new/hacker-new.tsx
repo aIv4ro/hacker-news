@@ -1,4 +1,5 @@
 import { HackerNew as IHackerNew } from '../../types/hacker-new'
+import { footer, h4, header } from './hacker-new.css'
 
 interface Props {
   hackerNew: IHackerNew
@@ -33,11 +34,19 @@ const getTimeDiff = (time: number) => {
 
 export function HackerNew ({ hackerNew }: Props) {
   const timeDiff = getTimeDiff(hackerNew.time * 1000)
+  let url
+  try {
+    url = new URL(hackerNew.url)
+  } catch (err) {}
+
   return (
     <article>
-      <header>{hackerNew.title}</header>
-      <footer>
-        {hackerNew.score} {hackerNew.score === 1 ? 'point' : 'points'} by {hackerNew.by} {timeDiff}
+      <header className={header}>
+        <h4 className={h4}>{hackerNew.title}</h4>
+        {(url != null) && <a href={hackerNew.url}>({url?.hostname})</a>}
+      </header>
+      <footer className={footer}>
+        {hackerNew.score} {hackerNew.score === 1 ? 'point' : 'points'} by {hackerNew.by} {timeDiff} | {hackerNew.kids.length} comments
       </footer>
     </article>
   )

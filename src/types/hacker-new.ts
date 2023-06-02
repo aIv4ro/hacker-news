@@ -7,7 +7,7 @@ export interface HackerNew {
   time: number
   score: number
   descendants: number
-  kids: number
+  kids: string[]
 }
 
 export type HackerNews = HackerNew[]
