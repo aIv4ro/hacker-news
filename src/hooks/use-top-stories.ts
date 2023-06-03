@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { buildUrl } from '../constants/contants'
-import { Stories } from '../types/story'
+import { Stories, Story } from '../types/story'
 import { fetchItem } from '../services/fetch-item'
 
 function loadIds (ids: number[]): Promise<Stories> {
   return Promise.all(
-    ids.map(fetchItem)
+    ids.map(id => fetchItem(id) as Promise<Story>)
   )
 }
 

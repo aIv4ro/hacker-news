@@ -1,19 +1,19 @@
 import { useRoute } from 'wouter'
-import { Story } from '../types/story'
+import { StoryPopulated } from '../types/story'
 import { useEffect, useState } from 'react'
-import { fetchItem } from '../services/fetch-item'
+import { fetchItemPopulated } from '../services/fetch-item-populated'
 
 export function useStory () {
   const [, params] = useRoute('/story/:id')
-  const [story, setStory] = useState<Story>()
+  const [story, setStory] = useState<StoryPopulated>()
   const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     const id = params?.id
     if (id == null) { return }
     setLoading(true)
-    fetchItem(id)
-      .then(res => setStory(res))
+    fetchItemPopulated(id)
+      .then(res => setStory(res as StoryPopulated))
       .finally(() => setLoading(false))
   }, [setStory, params?.id])
 
