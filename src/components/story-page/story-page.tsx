@@ -1,7 +1,7 @@
 import { useStory } from '../../hooks/use-story'
-import { Comment } from '../comment/comment'
+import { CommentList } from '../comment-list/comment-list'
 import { Story } from '../story/story'
-import { commentsList, section } from './story-page.css'
+import { section } from './story-page.css'
 
 export function StoryPage () {
   const { story, isLoading } = useStory()
@@ -17,15 +17,7 @@ export function StoryPage () {
   return (
     <section className={section}>
       <Story hackerNew={story} />
-      <ul className={commentsList}>
-        {story.kidsItems.map(kidItem => {
-          return (
-            <li key={kidItem.id}>
-              <Comment comment={kidItem} />
-            </li>
-          )
-        })}
-      </ul>
+      <CommentList comments={story.kidsItems} style={{ marginLeft: '0' }} />
     </section>
   )
 }

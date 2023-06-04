@@ -1,26 +1,20 @@
 import { CommentPopulated } from '../../types/comment'
 import { getTimeDiff } from '../../utils/date'
-import { header, section } from './comment.css'
-import { sectionWithoutPadding } from '../story-page/story-page.css'
+import { header } from './comment.css'
+import { CommentList } from '../comment-list/comment-list'
 
 interface Props {
   comment: CommentPopulated
   className?: string
 }
-export function Comment ({ comment, className = sectionWithoutPadding }: Props) {
+export function Comment ({ comment }: Props) {
   const timeDiff = getTimeDiff(comment.time * 1000)
 
   return (
-    <article className={className}>
-      <header className={header}>{comment.by} {timeDiff}</header>
+    <article>
+      <header className={header}>· {comment.by} {timeDiff}</header>
       <footer><p dangerouslySetInnerHTML={{ __html: comment.text }} /></footer>
-      <ul>
-        {comment.kidsItems.map(kidItem => {
-          return (
-            <li key={kidItem.id}><Comment comment={kidItem} className={section} /></li>
-          )
-        })}
-      </ul>
+      <CommentList comments={comment.kidsItems} />
     </article>
   )
 }
