@@ -2,6 +2,7 @@ import { Link } from 'wouter'
 import { Story as IStory } from '../../types/story'
 import { footer, h4, header, storyLink } from './story.css'
 import { getTimeDiff } from '../../utils/date'
+import { tryOrUndefined } from '../../utils/other'
 
 interface Props {
   hackerNew: IStory
@@ -9,10 +10,7 @@ interface Props {
 
 export function Story ({ hackerNew }: Props) {
   const timeDiff = getTimeDiff(hackerNew.time * 1000)
-  let url: URL | undefined
-  try {
-    url = new URL(hackerNew.url)
-  } catch (err) {}
+  const url = tryOrUndefined(() => new URL(hackerNew.url))
 
   return (
     <article>
