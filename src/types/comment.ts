@@ -7,7 +7,7 @@ export interface Comment extends Item {
 }
 
 export interface CommentPopulated extends Comment {
-  kidsItems: Comments
+  kidsItems: CommentsPopulated
 }
 
 export type Comments = Comment[]
